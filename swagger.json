@@ -1,0 +1,113 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "The air quality information",
+    "description": "The goal of this project is to create a REST API responsible for exposing the air quality information of a nearest city to GPS coordinates using iqair",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/get-air-quality": {
+      "get": {
+        "parameters": [
+          {
+            "name": "longitude",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "get air quality for the given zone ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/getAirPolutionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/get-max-pollution": {
+      "get": {
+        "summary": "get air quality for the given zone ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/getMaxPolutionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "getAirPolutionResponse": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "type": "object",
+          "properties": {
+            "Pollution": {
+              "type": "object",
+              "properties": {
+                "ts": { "type": "string" },
+                "aqius": { "type": "number" },
+                "mainus": { "type": "string" },
+                "aqicn": { "type": "number" },
+                "maincn": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "getMaxPolutionResponse": {
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string" },
+        "ts": { "type": "string" },
+        "aqius": { "type": "number" },
+        "mainus": { "type": "string" },
+        "aqicn": { "type": "number" },
+        "maincn": { "type": "string" },
+        "__v": { "type": "number" }
+      }
+    },
+    "InvalidResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
