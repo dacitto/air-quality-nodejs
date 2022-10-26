@@ -9,6 +9,7 @@
 - NodeJs
 - Express
 - MongooDB
+- TypeScript
 - axios
 - node-cron
 - swagger
