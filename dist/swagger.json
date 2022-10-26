@@ -20,14 +20,16 @@
                 "parameters": [
                     {
                         "name": "longitude",
+                        "description": "Longitude of the location.",
                         "in": "query",
-                        "type": "string",
+                        "type": "number",
                         "required": true
                     },
                     {
                         "name": "latitude",
+                        "description": "Latitude of the location.",
                         "in": "query",
-                        "type": "string",
+                        "type": "number",
                         "required": true
                     }
                 ],
@@ -50,7 +52,7 @@
         },
         "/get-max-pollution": {
             "get": {
-                "summary": "get air quality for the given zone ",
+                "summary": "get the max pollution details for Paris",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -58,8 +60,8 @@
                             "$ref": "#/definitions/getMaxPolutionResponse"
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "server error",
                         "schema": {
                             "$ref": "#/definitions/InvalidResponse"
                         }
